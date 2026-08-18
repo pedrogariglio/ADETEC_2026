@@ -1,0 +1,5 @@
+Julian,Alvarez,Delantero,Atletico Madrid
+Emiliano,Martinez,Arquero,Aston Villa
+Cristian,Romero,Defensor,Tottenham Hotspur
+Enzo,Fernandez,Mediocampista,Chelsea
+Lionel,Messi,Delantero,Inter Miami FC
