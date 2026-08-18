@@ -42,7 +42,7 @@ def crear_seleccion_inicial():
     #retorno el objeto seleccion_argentina para poder utilizarlo mas adelante (en el main)
     return seleccion_argentina
 
-#ejecucion del programa
+#ejecucion del programa (demo aparte no escribe el archivo convocados.txt)
 if __name__ == "__main__":
   
     seleccion_argentina = crear_seleccion_inicial()

@@ -4,12 +4,12 @@ ARCHIVO_CONVOCADOS = "convocados_argentina.txt"
 
 
 def leer_archivo(nombre_archivo):
-    # En archivo voy a guardar la primera lectura del archivo para poder utilizar el metodo write en guardar_archivo
+    # Leo el archivo al iniciar el programa para recuperar los datos de los jugadores convocados por default
     archivo = open(nombre_archivo, "r", encoding="utf-8")
     # Estas lineas contendran los datos de los primeros jugadores convocados que vienen de la funcion crear_selecccion_inicial 
-    lineas = archivo.readlines() 
+    lineas = archivo.readlines() #readlines me devuelve una lista de lineas de texto del archivo 
     archivo.close()
-    return lineas
+    return lineas #retorno la lista de lineas de texto del archivo para poder utilizarlo en el metodo cargar_convocados_txt
 
 
 def guardar_archivo(nombre_archivo, convocados):
@@ -24,22 +24,28 @@ def guardar_archivo(nombre_archivo, convocados):
 # porque este metodo al ejecutarse tendra como parametro la variable que almacena la funcion crear_seleccion_inicial de clase_jugadores
 def cargar_convocados_txt(seleccion):
     seleccion.convocados = []
-    lineas = leer_archivo(ARCHIVO_CONVOCADOS) 
+    lineas = leer_archivo(ARCHIVO_CONVOCADOS) # en lineas tengo alojado los datos de los jugadores convocados por default
 
-    for linea in lineas:
+    for linea in lineas: #recorro la lista de lineas
+        # datos es una lista de strings que contiene los datos de cada jugador separados por comas
         datos = linea.strip().split(",")
+        # si el largo de la lista datos es 4, significa que tiene los datos de un jugador completo
         if len(datos) == 4:
             nombre, apellido, posicion, club = datos
+            # creo un objeto jugador con los datos de cada jugador utilizando la clase Jugador
             jugador = Jugador(nombre, apellido, posicion, club)
+            # convoco el jugador
             seleccion.convocar(jugador)
 
-
+# metodo para quitar un jugador
+# recorre la lista de convocados seleccion.convocados y compara con los datos introducidos por el usuario
 def quitar_jugador(seleccion, nombre, apellido):
-    nombre = nombre.strip().title() # Elimino espacios y convierto a mayusculas
+    nombre = nombre.strip().title() # elimino espacios y convierto a mayusculas
     apellido = apellido.strip().title()
     for jugador in seleccion.convocados:
-        if jugador.nombre == nombre and jugador.apellido == apellido:
-            seleccion.convocados.remove(jugador)
+        # si los datos del jugador coinciden con los datos del jugador a quitar, lo elimino
+        if jugador.nombre == nombre and jugador.apellido == apellido: 
+            seleccion.convocados.remove(jugador) 
             return True
     return False
 
